@@ -5,10 +5,10 @@ import TodoItem from './TodoItem';
 const Todo = ({ todo, toggleTodo }: { todo: TodoItem , toggleTodo: Function }) => {
     const handleTodoClick = () =>
     {
-        toggleTodo(todo.id);
+        toggleTodo(todo.RECIPE_KEY);
     }
     return (
-        <div><label><input type="checkbox" checked={todo.completed} readOnly onChange={handleTodoClick } /></label>{todo.name}</div>
+        <div><label><input type="checkbox" checked={todo.ACTIVE_FLG} readOnly onChange={handleTodoClick } /></label>{todo.RECIPE_NAME}</div>
     );
 };
 

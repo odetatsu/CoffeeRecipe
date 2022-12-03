@@ -4,7 +4,7 @@ import TodoItem from './TodoItem';
 
 const TodoList = ({ todos, toggleTodo }: { todos: TodoItem[],toggleTodo:Function }) => {
     return <>
-        {todos.map((todo) => <Todo todo={todo} key={todo.id} toggleTodo={toggleTodo} />)}
+        {todos.map((todo) => <Todo todo={todo} key={todo.RECIPE_KEY} toggleTodo={toggleTodo} />)}
         </>
 };
 

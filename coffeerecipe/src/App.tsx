@@ -6,37 +6,39 @@ import {v4 as uuidv4 } from 'uuid'
 import { useDispatch } from 'react-redux';
 import { decrement, increment, incrementByAmount } from './counterSlice';
 import { useSelector } from './store';
+import axios, { AxiosResponse } from 'axios';
+import todo from "./todo.json";
+
+type todo = typeof todo;
+
+const baseURL = "/recipes?name=User"
 
 function App() {
 
-    const [todos, setTodos] = useState<TodoItem[]>([]);
+    const [todos, setTodos] = useState<todo[]>([]);
 
     const todoNameRef = useRef<HTMLInputElement>(null);
 
 
     const handleAddTodo = () => {
-        //タスクを追加。
-        let todoCopy = todos.slice(0);
+        axios.get(baseURL).then((response:AxiosResponse<todo[]>) => {
+            console.log(response.data);
 
-        const newname: string = todoNameRef.current?.value as string;
-        let newTodoItem: TodoItem = { id: uuidv4(), name: newname, completed:false };
- 
+            //setTodos(response.data);
+          });
 
-        todoCopy.push(newTodoItem);
-
-        setTodos(todoCopy);
     };
 
-    const toggleTodo = (id:string) => {
+    const toggleTodo = (id:number) => {
         const newTodos = todos.slice(0);
-        const todo: TodoItem = todos.find((todo) => todo.id === id) as TodoItem;
-        todo.completed = !todo.completed;
+        const todo: todo = todos.find((todo) => todo.RECIPE_KEY === id) as todo;
+        //todo.ACTIVE_FLG = !todo.ACTIVE_FLG;
         setTodos(newTodos);
 
     }
     const handleClear = () =>
     {
-        const newTodos = todos.filter((todo) => !todo.completed);
+        const newTodos = todos.filter((todo) => !todo.ACTIVE_FLG);
         setTodos(newTodos);
 
     }
@@ -56,7 +58,6 @@ function App() {
           <button onClick={handleAddTodo } >add task</button>
           <button onClick={handleClear}>delete complete task</button>
 
-
           <input type="text" onChange={(e) => setIncrementAmount(e.target.value)} />
 
           <button onClick={() => dispatch(increment())}>+</button>
@@ -65,7 +66,7 @@ function App() {
           <button onClick={() => dispatch(incrementByAmount(Number(incrementAmount)))}>+</button>
 
           <p>{count}</p>
-          <div>tasks:{todos.filter((todo) => !todo.completed).length}</div>
+          <div>tasks:{todos.filter((todo) => !todo.ACTIVE_FLG).length}</div>
 
     </div>
   );
