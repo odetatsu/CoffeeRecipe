@@ -1,25 +1,26 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomeNabvar from "./Header/HomeNavbar";
 import RecipeList from "./component/RecipeList";
-import ComponentB from "./component/sample";
-
+import { useDispatch } from 'react-redux';
+import {increment} from "./Store/counterSlice"
+import { TimerApp } from './component/StopWatch/Timer';
 const Login = () => <h1>Login</h1>;
 
 const Routers = () => {
+  const dispatch = useDispatch();
+
+  dispatch(increment());
   return (
-    <BrowserRouter>
+    <>
+      <HomeNabvar />
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Outlet></Outlet>}>
-            <Route path="page2" element={<ComponentB />} />
-            <Route path="login" element={<Login />} />
-            <Route index element={<RecipeList />} />
-          </Route>
+          <Route path="CoffeeBeans" element={<TimerApp />} />
+          <Route path="login" element={<Login />} />
+          <Route index element={<RecipeList />} />
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   );
 };
 export default Routers;
