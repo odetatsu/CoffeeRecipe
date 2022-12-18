@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import  counterReducer  from "./counterSlice"
+import recipeReducer from "./recipeSlice"
 import { useSelector as rawUseSelector, TypedUseSelectorHook } from "react-redux";
 
 export const store = configureStore({
     reducer: {
         counter:counterReducer,
+        recipe:recipeReducer,
     },
 });
 

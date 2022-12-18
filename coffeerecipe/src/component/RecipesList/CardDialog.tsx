@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 
-export const MyVerticallyCenteredModal = (isshow:boolean)=> {
+export const CardDialog = ({ isshow }:{isshow:boolean})=> {
     const [show, setShow] = useState(false);
 
   return (

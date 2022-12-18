@@ -6,8 +6,8 @@ export const CREATE_EVENT = 'CREATE_EVENT'
 export const UPDATE_EVENT = 'UPDATE_EVENT'
 export const DELETE_EVENT = 'DELETE_EVENT'
 
-const ROOT_URL = 'https://udemy-utils.herokuapp.com/api/v1'
-const QUERYSTRING = '?token=token123'
+const ROOT_URL = 'https://localhost:8080/'
+const QUERYSTRING = ''
 
 export const readEvents = () => async dispatch => {
   const response = await axios.get(`${ROOT_URL}/events${QUERYSTRING}`)

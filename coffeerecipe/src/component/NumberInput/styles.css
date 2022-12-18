@@ -1,0 +1,20 @@
+.numberInputApp
+{
+  min-width: 50%;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 40px;
+  text-size-adjust:auto;
+  font-size-adjust: 0.6;
+  color:rgba(255, 255, 255, 0.8);
+};
+
+.numberView2
+{
+  text-size-adjust:auto;
+  color: bisque;
+  background-color:#90ddb4;
+  font-size: 20px;
+};

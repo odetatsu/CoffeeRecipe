@@ -1,25 +1,31 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeNabvar from "./Header/HomeNavbar";
-import RecipeList from "./component/RecipeList";
-import { useDispatch } from 'react-redux';
-import {increment} from "./Store/counterSlice"
-import { TimerApp } from './component/StopWatch/Timer';
-const Login = () => <h1>Login</h1>;
+import RecipeList from "./component/RecipesList/RecipeList";
+import { useDispatch } from "react-redux";
+import { Scalebar } from "./component/BeansEdit/Scalebar";
+import { setRecipeKey } from "./Store/recipeSlice";
+import { UseRecipe } from "./component/UseRecipe/UseRecipe";
+import { NumberInput } from "./component/NumberInput/App";
+import { AnimatePresence } from "framer-motion";
 
 const Routers = () => {
   const dispatch = useDispatch();
 
-  dispatch(increment());
+  dispatch(setRecipeKey(1));
   return (
     <>
-      <HomeNabvar />
-      <BrowserRouter>
-        <Routes>
-          <Route path="CoffeeBeans" element={<TimerApp />} />
-          <Route path="login" element={<Login />} />
-          <Route index element={<RecipeList />} />
-        </Routes>
-      </BrowserRouter>
+      <Router>
+        <AnimatePresence initial={true}>
+          <Routes>
+            <Route path="/" element={<HomeNabvar />}>
+              <Route index element={<RecipeList />} />
+              <Route path="CoffeeBeans" element={<Scalebar />} />
+              <Route path="addrecipe" element={<NumberInput />} />
+              <Route path="userecipe" element={<UseRecipe />} />
+            </Route>
+          </Routes>
+        </AnimatePresence>
+      </Router>
     </>
   );
 };

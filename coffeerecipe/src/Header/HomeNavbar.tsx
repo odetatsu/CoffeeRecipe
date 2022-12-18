@@ -2,7 +2,7 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 
 const HomeNabvar = () => {
   return (
-    <Navbar bg="light" variant="light">
+    <Navbar bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="/">Home</Navbar.Brand>
         <Nav className="me-auto">
@@ -11,6 +11,7 @@ const HomeNabvar = () => {
         </Nav>
       </Container>
     </Navbar>
+    
   );
 };
 
