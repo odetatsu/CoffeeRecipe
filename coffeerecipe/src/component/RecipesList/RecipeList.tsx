@@ -6,9 +6,10 @@ import { useState, useEffect } from "react";
 import CardGroup from "react-bootstrap/CardGroup";
 import { motion } from 'framer-motion';
 
-const baseURL = "recipes";
+const baseURL = process.env.REACT_APP_API + "/recipes";
 
 const RecipeList = () => {
+
   const [recipes, setRecipes] = useState<RecipeItem[]>([]);
   useEffect(() => {
     axios.get(baseURL).then((response: AxiosResponse<RecipeItem[]>) => {

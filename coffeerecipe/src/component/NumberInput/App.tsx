@@ -2,7 +2,7 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { useState } from "react";
 import "./styles.css";
 
-export const NumberInput = () => {
+const NumberInput = () => {
   const [num1, setNum1] = useState<number>(0);
   const [num2, setNum2] = useState<number>(0);
   const [num3, setNum3] = useState<number>(0);
@@ -16,7 +16,7 @@ export const NumberInput = () => {
   };
   const slideNumber = (step: number) => {
     if (num4 !== 0) return;
-    if (step == 1) {
+    if (step === 1) {
       setNum4(num3);
       setNum3(num2);
       setNum2(num1);
@@ -47,9 +47,9 @@ export const NumberInput = () => {
           {num1}
         </span>
       </div>
-      <ButtonGroup vertical>
+      <ButtonGroup vertical className="d-grid" size="sm">
         <ButtonGroup>
-          <Button onClick={() => addNumber(1)}>1</Button>
+          <Button className="btn btn-lg btn-primary" onClick={() => addNumber(1)}>1</Button>
           <Button onClick={() => addNumber(2)}>2</Button>
           <Button onClick={() => addNumber(3)}>3</Button>
         </ButtonGroup>
@@ -74,3 +74,6 @@ export const NumberInput = () => {
     </div>
   );
 };
+
+
+export default NumberInput;

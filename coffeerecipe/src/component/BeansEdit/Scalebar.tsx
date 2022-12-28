@@ -3,7 +3,7 @@ import React from "react";
 import { useState,useRef } from "react";
 import "./styles.css"
 
-export const Scalebar = () => {
+const Scalebar = () => {
   const inputElement = useRef<HTMLInputElement>(null)
   const [roastValue, setRoastValue] = useState<number>(1);
 
@@ -22,3 +22,5 @@ export const Scalebar = () => {
     </>
   );
 };
+
+export default Scalebar;

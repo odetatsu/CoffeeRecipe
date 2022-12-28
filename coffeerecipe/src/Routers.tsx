@@ -1,17 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeNabvar from "./Header/HomeNavbar";
-import RecipeList from "./component/RecipesList/RecipeList";
-import { useDispatch } from "react-redux";
-import { Scalebar } from "./component/BeansEdit/Scalebar";
-import { setRecipeKey } from "./Store/recipeSlice";
-import { UseRecipe } from "./component/UseRecipe/UseRecipe";
-import { NumberInput } from "./component/NumberInput/App";
 import { AnimatePresence } from "framer-motion";
+import * as React from "react";
+
+const NumberInput = React.lazy(() => import("./component/NumberInput/App")); // 追加
+const UseRecipe = React.lazy(() => import("./component/UseRecipe/UseRecipe")); // 追加
+const Scalebar = React.lazy(() => import("./component/BeansEdit/Scalebar")); // 追加
+const RecipeList = React.lazy(
+  () => import("./component/RecipesList/RecipeList")
+);
 
 const Routers = () => {
-  const dispatch = useDispatch();
-
-  dispatch(setRecipeKey(1));
   return (
     <>
       <Router>
@@ -19,9 +18,9 @@ const Routers = () => {
           <Routes>
             <Route path="/" element={<HomeNabvar />}>
               <Route index element={<RecipeList />} />
-              <Route path="CoffeeBeans" element={<Scalebar />} />
-              <Route path="addrecipe" element={<NumberInput />} />
-              <Route path="userecipe" element={<UseRecipe />} />
+              <Route path="/CoffeeBeans" element={<Scalebar />} />
+              <Route path="/addrecipe" element={<NumberInput />} />
+              <Route path="/userecipe" element={<UseRecipe />} />
             </Route>
           </Routes>
         </AnimatePresence>

@@ -18,3 +18,9 @@
   background-color:#90ddb4;
   font-size: 20px;
 };
+
+.Button
+{
+  padding: 50px;
+  display: inline-block;
+}

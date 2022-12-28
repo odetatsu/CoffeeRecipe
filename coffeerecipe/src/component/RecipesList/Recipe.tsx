@@ -22,12 +22,6 @@ const Recipe = ({ recipe }: { recipe: RecipeItem }) => {
     exit: { x: "-100%", opacity: 0, duration: 0.5, ease: "easeInOut" }
   };
   return (
-    <motion.div
-    initial="initial"
-    animate="enter"
-    exit="exit"
-    variants={postPreviewVariants}
-    >
     <Card className="card" onClick={clickCard}>
       <Card.Header as="h5">{recipe.recipe_NAME}</Card.Header>
       <Card.Body>
@@ -40,7 +34,6 @@ const Recipe = ({ recipe }: { recipe: RecipeItem }) => {
         </ButtonGroup>
       </Card.Body>
     </Card>
-    </motion.div>
   );
 };
 
