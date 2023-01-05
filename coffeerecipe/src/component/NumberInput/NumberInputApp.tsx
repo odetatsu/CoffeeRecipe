@@ -2,7 +2,7 @@ import { Button, ButtonGroup } from "react-bootstrap";
 import { useState } from "react";
 import "./styles.css";
 
-const NumberInput = () => {
+const NumberInputApp = () => {
   const [num1, setNum1] = useState<number>(0);
   const [num2, setNum2] = useState<number>(0);
   const [num3, setNum3] = useState<number>(0);
@@ -76,4 +76,4 @@ const NumberInput = () => {
 };
 
 
-export default NumberInput;
+export default NumberInputApp;

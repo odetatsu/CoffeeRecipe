@@ -1,11 +1,10 @@
-.timerApp
-{
+.timerApp {
   color: cornflowerblue;
   text-align: center;
 
 }
 
-  .time {
-    background-color: cornflowerblue;
-    font-size: 100px;
-  }
+.time {
+  background-color: cornflowerblue;
+  font-size: 100px;
+}
