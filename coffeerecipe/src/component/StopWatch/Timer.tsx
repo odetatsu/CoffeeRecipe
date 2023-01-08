@@ -1,59 +1,88 @@
 import React from "react";
 import { useTimer } from "react-timer-hook";
-import Button from "react-bootstrap/Button";
-import "./styles.css"
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import "./styles.css";
+import { useSelector, RootState } from "../../Store/store";
+import { useAnimation, motion } from 'framer-motion';
 
-type TimerState = "stop" | "start";
-
-function MyTimer({ expiryTimestamp }: { expiryTimestamp: Date }) {
-  const [stateMode, setStateMode] = useState<TimerState>("stop");
-
-  const {
-    seconds,
-    minutes,
-    isRunning,
-    start,
-    pause,
-    resume,
-    restart,
-  } = useTimer({
+function MyTimer() {
+  const prop_minutes = useSelector(
+    (state: RootState) => state.recipeStep.minutesDate
+  );
+  const prop_seconds = useSelector(
+    (state: RootState) => state.recipeStep.secondDate
+  );
+  const expiryTimestamp = new Date();
+  const { seconds, minutes, isRunning, pause, resume, restart } = useTimer({
     expiryTimestamp,
+    autoStart: false,
     onExpire: () => console.warn("onExpire called"),
   });
+  const inputElement = useRef<HTMLImageElement>(null);
 
+  useEffect(() => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + prop_seconds);
+    time.setMinutes(time.getMinutes() + prop_minutes);
+    restart(time as unknown as Date, false);
+    buttonAnimation.start({scale:0}).then(()=>{
+      inputElement.current?.setAttribute('src', window.location.origin + "/next.png") ;
+      buttonAnimation.start({scale:1});
+    });
+  }, [prop_minutes, prop_seconds]);
+  const clickTimerButton = ()=>
+  {
+    if(isRunning)
+    {
+      pause();
+      buttonAnimation.start({scale:0}).then(()=>{
+        inputElement.current?.setAttribute('src', window.location.origin + "/next.png") ;
+        buttonAnimation.start({scale:1});
+      });
+      return;
+    }
+    resume();
+    buttonAnimation.start({scale:0}).then(()=>{
+      inputElement.current?.setAttribute('src', window.location.origin + "/pause.png") ;
+      buttonAnimation.start({scale:1});
+    });
+    return;
+  }
+  const buttonAnimation = useAnimation();
   return (
     <div className="timerApp">
-      <h1>タイトル</h1>
-      <p>回数</p>
       <div className="time">
-        <span>{minutes}</span>:
-        <span>{seconds}</span>
+        <span>{minutes}</span>:<span>{seconds}</span>
       </div>
       <p>{isRunning ? "Running" : "Not running"}</p>
-      <Button onClick={start}>Start</Button>
-      <Button onClick={pause}>Pause</Button>
-      <Button onClick={resume}>Next</Button>
-      <Button
-        onClick={() => {
-          // Restarts to 5 minutes timer
-          const time = new Date();
-          time.setSeconds(time.getSeconds() + 300);
-          restart(time as unknown as Date);
-        }}
-      >
-        Restart
-      </Button>
+      <div className="timer-button">
+      <motion.img
+          animate={buttonAnimation} exit={{scale:0}} transition={{duration: 0.2,ease: "easeInOut",}}
+          src={window.location.origin + "/next.png"}
+          alt="timerButton"
+          onClick={clickTimerButton}
+          ref={inputElement}
+        />
+        <motion.img
+          whileTap={{scale:0.5, transition: { duration: 0.1 },}}
+          src={window.location.origin + "/restart.png"}
+          alt="Add"
+          onClick={() => {
+            const time = new Date();
+            time.setSeconds(time.getSeconds() + prop_seconds);
+            time.setMinutes(time.getMinutes() + prop_minutes);
+            restart(time as unknown as Date, false);
+          }}
+        />
+      </div>
     </div>
   );
 }
 
-export const TimerApp =()=> {
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
+export const TimerApp = () => {
   return (
     <div>
-      <MyTimer expiryTimestamp={time as unknown as Date} />
+      <MyTimer />
     </div>
   );
-}
+};

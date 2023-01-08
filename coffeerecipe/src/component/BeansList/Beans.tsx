@@ -8,13 +8,9 @@ import { motion } from 'framer-motion';
 const Beans = ({ beans }: { beans: BeansItem }) => {
   const navigate = useNavigate();
   const clickCard = (event: React.MouseEvent<HTMLInputElement>) => {
-    navigate("/modBeans/" + beans.beansKey);
+    navigate("/modbeans/" + beans.beansKey);
   };
-  const postPreviewVariants = {
-    initial: { x: "100%", opacity: 0 },
-    enter: { x: 0, opacity: 1, duration: 0.5, ease: "easeInOut" },
-    exit: { x: "-100%", opacity: 0, duration: 0.5, ease: "easeInOut" },
-  };
+
   return (
     <motion.div
       transition={{

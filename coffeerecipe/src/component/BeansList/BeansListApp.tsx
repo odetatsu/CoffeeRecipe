@@ -7,6 +7,7 @@ import Beans from './Beans';
 import { BeansItem } from './BeansItem';
 
 import "./styles.css";
+import { useNavigate } from 'react-router-dom';
 
 const baseURL = process.env.REACT_APP_API + "/beans";
 
@@ -19,41 +20,58 @@ const BeansListApp = () => {
       setBeans(response.data);
     });
   }, []);
-  const blogVariants = {
-    enter: {
-      transition: { staggerChildren: 0.1 },
-      duration: 0.5,
-      ease: "easeInOut",
-    },
-    exit: {
-      transition: { staggerChildren: 0.1 },
-      duration: 0.5,
-      ease: "easeInOut",
-    },
-  };
+  const navigate = useNavigate();
+
   return (
     <>
       <motion.div
-        className="blog-list"
-        initial="initial"
-        animate="enter"
-        exit="exit"
-        variants={blogVariants}
+        animate={{
+          x: 0,
+          opacity: 1,
+          scale: 1,
+        }}
+        initial={{
+          x: "50%",
+          opacity: 0,
+          scale: 0.5,
+        }}
+        exit={{
+          x: "-50%",
+          opacity: 0,
+          scale: 0.5,
+        }}
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+        }}
       >
-        <div className="wrapper">
+        <div className="beanslist-body">珈琲一覧</div>
+        <div className="card-wrapper">
           {beans.map((item) => (
             <Beans beans={item} key={item.beansKey} />
           ))}
         </div>
       </motion.div>
-      <a href="/">
-        <img
+      <motion.img
+        animate={{
+          scale: 1
+        }}
+        initial={{
+          scale: 0,
+        }}
+        exit={{
+          scale: 0,
+        }}
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+        }} whileTap={{scale:0.5, transition: { duration: 0.1 },}}
           className="footer-button fixed-bottom"
           src="./plus.png"
           width="64px"
-          alt="Home"
-        />
-      </a>
+          alt="add"
+          onClick={()=>{navigate("/addbeans");}}
+      />
     </>
   );
 };

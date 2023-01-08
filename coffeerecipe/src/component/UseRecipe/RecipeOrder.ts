@@ -1,2 +1,2 @@
-const RecipeOrderjson = {"second_date":0,"recipe":null,"active_FLG":1,"delete_FLG":0,"recipe_KEY":1,"timer_KEY":1,"order":1,"order_RATIO":null,"minutes_DATE":5}
+const RecipeOrderjson = {"orderRatio":70,"minutesDate":5,"secondDate":0,"temperature":0,"order":1};
 export type RecipeOrder = typeof RecipeOrderjson;

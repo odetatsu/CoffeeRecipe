@@ -1,0 +1,36 @@
+.beans-body {
+    min-width: 80%;
+    outline: none;
+    border: none;
+    padding: 1rem 1rem 1rem 1rem;
+    margin-top: auto;
+    margin-right: 4rem;
+    text-align: left;
+    font-size: 20px;
+    font-size-adjust: 0.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.beans-input {
+    min-width: 80%;
+    padding: 1rem 1rem 1rem 1rem;
+    margin-top: auto;
+}
+
+.beans-scale {
+    min-width: 80%;
+    padding: 0rem 1rem 1rem 1rem;
+    margin-top: auto;
+    text-align: center;
+}
+
+.footer-button {
+    margin-left: auto;
+    margin-right: 10px;
+    padding-right: auto;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-end;
+    width: 64px;
+}

@@ -1,8 +1,36 @@
 import { Button, ButtonGroup } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import "./styles.css";
+import InputButtons from "./InputButtons";
+import { useSelector, RootState } from '../../Store/store';
+import { useDispatch } from 'react-redux';
+import { setNumState1,setNumState2,setNumState3,setNumState4 } from "../../Store/numberInputSlice";
 
 const NumberInputApp = () => {
+
+  const inputNumber = useSelector((state: RootState) => state.numberInput.inputValue);
+  const count = useSelector((state: RootState) => state.numberInput.count);
+  useEffect(() => {
+    console.log(inputNumber);
+    if(inputNumber===100)
+    {
+      slideNumber(2);
+      return;
+    }
+    if(inputNumber===10)
+    {
+      slideNumber(1);
+      return;
+    }
+    if(inputNumber===-1)
+    {
+      backNumber();
+      return;
+    }
+    addNumber(inputNumber);
+
+  }, [inputNumber,count]);
+
   const [num1, setNum1] = useState<number>(0);
   const [num2, setNum2] = useState<number>(0);
   const [num3, setNum3] = useState<number>(0);
@@ -37,40 +65,25 @@ const NumberInputApp = () => {
     setNum1(num2);
     return;
   };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setNumState1(num1));
+  }, [num1]);
+  useEffect(() => {
+    dispatch(setNumState2(num2));
+  }, [num2]);
+  useEffect(() => {
+    dispatch(setNumState3(num3));
+  }, [num3]);
+  useEffect(() => {
+    dispatch(setNumState4(num4));
+  }, [num4]);
+
 
   return (
     <div className="numberInputApp">
-      <div className="numberView2">
-        <span>
-          {num4}
-          {num3}:{num2}
-          {num1}
-        </span>
-      </div>
-      <ButtonGroup vertical className="d-grid" size="sm">
-        <ButtonGroup>
-          <Button className="btn btn-lg btn-primary" onClick={() => addNumber(1)}>1</Button>
-          <Button onClick={() => addNumber(2)}>2</Button>
-          <Button onClick={() => addNumber(3)}>3</Button>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Button onClick={() => addNumber(4)}>4</Button>
-          <Button onClick={() => addNumber(5)}>5</Button>
-          <Button onClick={() => addNumber(6)}>6</Button>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Button onClick={() => addNumber(7)}>7</Button>
-          <Button onClick={() => addNumber(8)}>8</Button>
-          <Button onClick={() => addNumber(9)}>9</Button>
-        </ButtonGroup>
-        <ButtonGroup>
-          <Button onClick={() => slideNumber(2)}>00</Button>
-          <Button onClick={() => slideNumber(1)}>0</Button>
-          <Button variant="success" onClick={() => backNumber()}>
-            ←
-          </Button>
-        </ButtonGroup>
-      </ButtonGroup>
+      <InputButtons/>
     </div>
   );
 };
