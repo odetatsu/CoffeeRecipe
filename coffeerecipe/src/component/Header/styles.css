@@ -1,0 +1,27 @@
+.loading {
+  color: #2CA1A3
+}
+.container {
+  margin-left: 1rem;
+}
+
+.nav-img {
+  width: 64px;
+  max-width: 64px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-child {
+  padding-left: 1rem;
+  text-align: center;
+}
+.nav-links {
+  text-align: center;
+  justify-content: flex-end;
+}
+.nav-img2 {
+  width: 64px;
+  display: flex;
+  justify-content: flex-end;
+}

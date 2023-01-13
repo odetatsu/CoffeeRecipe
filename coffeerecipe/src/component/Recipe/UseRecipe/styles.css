@@ -1,0 +1,30 @@
+.recipe-detail-grid {
+  min-width: 100%;
+  outline: none;
+  border: none;
+  padding: 1rem 1rem 1rem 1rem;
+  margin-top: auto;
+  margin-right: 4rem;
+  text-align: left;
+  font-size: 20px;
+  font-size-adjust: 0.6;
+  color:rgba(255, 255, 255, 0.8);
+}
+
+.step-info {
+  min-width: 80%;
+  outline: none;
+  border: none;
+  padding: 1rem 1rem 1rem 1rem;
+  margin-top: auto;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  text-align: left;
+  font-size: 20px;
+  text-size-adjust:auto;
+  font-size-adjust: 0.6;
+  color:rgba(255, 255, 255, 0.8);
+}
+
+.popOver-bottons {
+}

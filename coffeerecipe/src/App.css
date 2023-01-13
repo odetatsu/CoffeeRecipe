@@ -20,12 +20,39 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.footer-button{
+.footer-button-right{
   margin-left: auto;
   margin-right: 10px;
   margin-bottom: 15px;
   display: flex;
   justify-content: flex-end;
+  width: 64px;
+}
+
+.footer-button-right2 {
+  margin-left: auto;
+  margin-right: 90px;
+  padding-right: auto;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-end;
+  width: 64px;
+}
+.footer-button-left{
+  margin-right: auto;
+  margin-left: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-start;
+  width: 64px;
+}
+
+.footer-button-center{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
   width: 64px;
 }
 
